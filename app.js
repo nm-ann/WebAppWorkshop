@@ -9,6 +9,7 @@ app.set('view engine', 'hbs');
 app.set('views', 'views');
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+hbs.registerPartials(__dirname + '/views/partials');
 
 app.get('/', function(request, response) {
     response.render('index', {name: 'Noam'});
