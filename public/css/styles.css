@@ -1,0 +1,15 @@
+.header {
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-items {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
