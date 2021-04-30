@@ -13,3 +13,15 @@
     flex-direction: column;
     width: 60%;
 }
+
+.card-container {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    margin: 20px;
+    width: 100%;
+}
