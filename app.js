@@ -20,6 +20,19 @@ app.get('/notes', function(request, response) {
     response.render('notes', {notes: data.notes});
 });
 
+app.get('/notes/:id', function (request, response) {
+    const rawData = fs.readFileSync('notes.json');
+    const data = JSON.parse(rawData);
+    let note;
+    for (let i = 0; i < data.notes.length; i++) {
+        if(data.notes[i].id == request.params.id) {
+            note = data.notes[i];
+            break;
+        }
+    }
+    response.render('notes', { notes: [note]});
+});
+
 app.post('/add_note', function(request, response) {
     const rawData = fs.readFileSync('notes.json');
     const data = JSON.parse(rawData);
