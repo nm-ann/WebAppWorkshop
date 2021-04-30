@@ -1,5 +1,6 @@
 const express = require('express');
 const hbs = require('hbs');
+const fs = require('fs');
 
 const app = express();
 const port = 3000;
@@ -14,13 +15,23 @@ app.get('/', function(request, response) {
 });
 
 app.get('/notes', function(request, response) {
-    response.render('notes', {
-        "notes": [{id: 1, title: 'This is a note.', body: 'This is the note body.'}]
-    })
+    const rawData = fs.readFileSync('notes.json');
+    const data = JSON.parse(rawData);
+    response.render('notes', {notes: data.notes});
 });
 
 app.post('/add_note', function(request, response) {
-    console.log(request.body);
+    const rawData = fs.readFileSync('notes.json');
+    const data = JSON.parse(rawData);
+    const id = data.maxId;
+    data.maxId++;
+    data.notes.push({
+        id: id,
+        title: request.body.title,
+        body: request.body.body,
+    });
+    fs.writeFileSync('notes.json', JSON.stringify(data));
+    response.redirect('/notes');
 });
 
 app.listen(port, function() {
