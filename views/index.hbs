@@ -8,5 +8,13 @@
 </head>
 <body>
     <h1>Welcome, {{name}}</h1>
+
+    <form action="/add_note" method="POST">
+        <label>Title</label>
+        <input type="text" name="title"/>
+        <label>Body</label>
+        <input type="text" name="body" />
+        <input type="submit" value="Submit"/>
+    </form>
 </body>
 </html>
